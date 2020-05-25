@@ -101,7 +101,6 @@
         <framework src="AudioToolbox.framework" />
         <framework src="AVFoundation.framework" />
         <framework src="CoreTelephony.framework" />
-        <framework src="PushKit.framework" />
         <framework src="CallKit.framework" />
 
         <!-- Add support for background VOIP and audio to the plist -->
@@ -137,19 +136,9 @@
           <string>$DEBUG_TWILIO</string>
         </config-file>
 
-        <!-- Add push entitlements -->
-        <config-file target="*-Debug.plist" parent="aps-environment">
-          <string>development</string>
-        </config-file>
-        <config-file target="*-Release.plist" parent="aps-environment">
-          <string>production</string>
-        </config-file>
-
-
         <header-file src="src/ios/TwilioVoicePlugin.h" />
         <source-file src="src/ios/TwilioVoicePlugin.m" />
 
-<!--         <framework src="TwilioVoice" type="podspec" spec="2.0.4" /> -->
         <resource-file src="sounds/ringing.wav" />
         <resource-file src="sounds/traditionalring.mp3" />
 
