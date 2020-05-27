@@ -406,6 +406,12 @@ static NSString *const kTwimlParamTo = @"To";
 
 - (void)callDidStartRinging:(TVOCall *)call {
     NSLog(@"Call Did Start Ringing");
+    self.call = call;
+    NSMutableDictionary *callProperties = [NSMutableDictionary new];
+    if (call.sid) {
+        callProperties[@"callSid"] = call.sid;
+    }
+    [self javascriptCallback:@"oncalldidring" withArguments:callProperties];
 }
 
 

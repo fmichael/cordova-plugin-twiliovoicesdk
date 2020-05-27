@@ -85,6 +85,10 @@
         delegate['oncalldiddisconnect'] = fn;
     }
 
+    TwilioPlugin.TwilioVoiceClient.prototype.calldidring = function (fn) {
+        delegate['oncalldidring'] = fn;
+    }
+
     TwilioPlugin.install = function() {
         if (!window.Twilio) window.Twilio = {};
         if (!window.Twilio.TwilioVoiceClient) window.Twilio.TwilioVoiceClient = new TwilioPlugin.TwilioVoiceClient();
