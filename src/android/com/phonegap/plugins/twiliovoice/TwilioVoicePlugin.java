@@ -304,10 +304,15 @@ public class TwilioVoicePlugin extends CordovaPlugin {
             public void run() {
                 try {
                     String accessToken = arguments.getString(0);
-                    String number = arguments.getString(1);
                     Map<String, String> map = new HashMap();
-                    map.put("To", number);
                     map.put("accessToken", accessToken);
+
+                    JSONObject more = arguments.getJSONObject(1);
+                    Iterator it = more.keys();
+                    while (it.hasNext()) {
+                        String i = it.next().toString();
+                        map.put(i, more.getString(i));
+                    }
 
                     ConnectOptions connectOptions = new ConnectOptions.Builder(accessToken).params(map).build();
                     mCall = Voice.connect(cordova.getActivity(), connectOptions, mCallListener);
