@@ -79,7 +79,7 @@ static NSString *const kTwimlParamTo = @"To";
     if ([enableCallKitPreference isEqualToString:@"YES"] || [enableCallKitPreference isEqualToString:@"TRUE"]) {
         self.enableCallKit = YES;
     } else {
-        self.enableCallKit = YES;
+        self.enableCallKit = NO;
     }
         
     if (self.enableCallKit) {
@@ -175,8 +175,9 @@ static NSString *const kTwimlParamTo = @"To";
                 [self performStartCallActionWithUUID:uuid handle:incomingCallAppName];
             } else {
                 NSLog(@"Making call to with params %@", self.outgoingCallParams);
+                
                 TVOConnectOptions *connectOptions = [TVOConnectOptions optionsWithAccessToken:self.accessToken block:^(TVOConnectOptionsBuilder *builder) {
-                    builder.params = @{kTwimlParamTo:self.outgoingCallParams};
+                    builder.params = self.outgoingCallParams;
                 }];
                 
                 self.call = [TwilioVoice connectWithOptions:connectOptions delegate:self];
